@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 public class ItemHandler {
-    private static final String AGED_BRIE = "Aged Brie";
+
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
     private final Item item;
@@ -21,9 +21,7 @@ public class ItemHandler {
     }
 
     protected void handleItemExpiration(Item item) {
-        if (item.name.equals(AGED_BRIE)) {
-            incrementItemQuality(item);
-        } else if (item.name.equals(BACKSTAGE_PASSES)) {
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             item.quality = 0;
         } else {
             decrementItemQuality(item);
@@ -35,9 +33,7 @@ public class ItemHandler {
     }
 
     protected void updateItemQuality(Item item) {
-        if (item.name.equals(AGED_BRIE)) {
-            incrementItemQuality(item);
-        } else if (item.name.equals(BACKSTAGE_PASSES)) {
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             incrementItemQuality(item);
 
             if (item.sellIn < 11) {
@@ -52,13 +48,13 @@ public class ItemHandler {
         }
     }
 
-    private void decrementItemQuality(Item item) {
+    protected final void decrementItemQuality(Item item) {
         if (item.quality > 0) {
             item.quality--;
         }
     }
 
-    private void incrementItemQuality(Item item) {
+    protected final void incrementItemQuality(Item item) {
         if (item.quality < 50) {
             item.quality++;
         }
