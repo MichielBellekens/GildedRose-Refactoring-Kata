@@ -2,7 +2,6 @@ package com.gildedrose;
 
 public abstract class ItemHandler {
 
-
     private final Item item;
 
     public ItemHandler(Item item) {

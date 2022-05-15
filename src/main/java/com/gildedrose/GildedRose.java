@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.util.Arrays;
 
 class GildedRose {
 
@@ -11,9 +12,9 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            ItemHandlerFactory.getItemHandler(item).handle();
-        }
+        Arrays.stream(items)
+            .map(ItemHandlerFactory::getItemHandler)
+            .forEach(ItemHandler::handle);
     }
 
 }

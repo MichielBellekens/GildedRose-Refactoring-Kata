@@ -1,18 +1,21 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ItemHandlerFactory {
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    private static final String AGED_BRIE = "Aged Brie";
-    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private static final List<String> LEGENDARY_ITEMS = Arrays.asList("Sulfuras, Hand of Ragnaros");
+    private static final List<String> IMPROVING_ITEMS = Arrays.asList("Aged Brie");
+    private static final List<String> EXPIRING_ITEMS = Arrays.asList("Backstage passes to a TAFKAL80ETC concert");
 
     public static ItemHandler getItemHandler(final Item item) {
-        if (item.name.equals(SULFURAS)) {
+        if (LEGENDARY_ITEMS.contains(item.name)) {
             return new LegendaryItemHandler(item);
         }
-        if (item.name.equals(AGED_BRIE)) {
+        if (IMPROVING_ITEMS.contains(item.name)) {
             return new ImprovingItemHandler(item);
         }
-        if (item.name.equals(BACKSTAGE_PASSES)) {
+        if (EXPIRING_ITEMS.contains(item.name)) {
             return new ExpiringImprovingItemHandler(item);
         }
         return new RegularItemHandler(item);
