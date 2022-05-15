@@ -1,9 +1,9 @@
 package com.gildedrose;
 
 class GildedRose {
-    public static final String AGED_BRIE = "Aged Brie";
-    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-    public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String AGED_BRIE = "Aged Brie";
+    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -23,43 +23,43 @@ class GildedRose {
     }
 
     private void handleItemExpiration(Item item) {
-        if (!item.name.equals(AGED_BRIE)) {
-            if (!item.name.equals(BACKSTAGE_PASSES)) {
-                if (!item.name.equals(SULFURAS)) {
-                    decrementItemQuality(item);
-                }
-            } else {
-                item.quality = 0;
-            }
-        } else {
+        if (item.name.equals(SULFURAS)) {
+            return;
+        }
+        if (item.name.equals(AGED_BRIE)) {
             incrementItemQuality(item);
+        } else if (item.name.equals(BACKSTAGE_PASSES)) {
+            item.quality = 0;
+        } else {
+            decrementItemQuality(item);
         }
     }
 
     private void updateItemSellIn(Item item) {
-        if (!item.name.equals(SULFURAS)) {
-            item.sellIn = item.sellIn - 1;
+        if (item.name.equals(SULFURAS)) {
+            return;
         }
+        item.sellIn--;
     }
 
     private void updateItemQuality(Item item) {
-        if (!item.name.equals(AGED_BRIE)
-            && !item.name.equals(BACKSTAGE_PASSES)) {
-            if (!item.name.equals(SULFURAS)) {
-                decrementItemQuality(item);
-            }
-        } else {
+        if (item.name.equals(SULFURAS)) {
+            return;
+        }
+        if (item.name.equals(AGED_BRIE)) {
+            incrementItemQuality(item);
+        } else if (item.name.equals(BACKSTAGE_PASSES)) {
             incrementItemQuality(item);
 
-            if (item.name.equals(BACKSTAGE_PASSES)) {
-                if (item.sellIn < 11) {
-                    incrementItemQuality(item);
-                }
-
-                if (item.sellIn < 6) {
-                    incrementItemQuality(item);
-                }
+            if (item.sellIn < 11) {
+                incrementItemQuality(item);
             }
+
+            if (item.sellIn < 6) {
+                incrementItemQuality(item);
+            }
+        } else {
+            decrementItemQuality(item);
         }
     }
 
