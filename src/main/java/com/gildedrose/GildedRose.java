@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.util.Arrays;
 
 class GildedRose {
