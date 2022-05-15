@@ -12,7 +12,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            new ItemHandler(item).handle();
+            ItemHandlerFactory.getItemHandler(item).handle();
         }
     }
 

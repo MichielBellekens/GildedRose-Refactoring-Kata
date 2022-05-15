@@ -3,7 +3,6 @@ package com.gildedrose;
 public class ItemHandler {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     private final Item item;
 
@@ -21,10 +20,7 @@ public class ItemHandler {
         }
     }
 
-    private void handleItemExpiration(Item item) {
-        if (item.name.equals(SULFURAS)) {
-            return;
-        }
+    protected void handleItemExpiration(Item item) {
         if (item.name.equals(AGED_BRIE)) {
             incrementItemQuality(item);
         } else if (item.name.equals(BACKSTAGE_PASSES)) {
@@ -34,17 +30,11 @@ public class ItemHandler {
         }
     }
 
-    private void updateItemSellIn(Item item) {
-        if (item.name.equals(SULFURAS)) {
-            return;
-        }
+    protected void updateItemSellIn(Item item) {
         item.sellIn--;
     }
 
-    private void updateItemQuality(Item item) {
-        if (item.name.equals(SULFURAS)) {
-            return;
-        }
+    protected void updateItemQuality(Item item) {
         if (item.name.equals(AGED_BRIE)) {
             incrementItemQuality(item);
         } else if (item.name.equals(BACKSTAGE_PASSES)) {
