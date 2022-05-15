@@ -9,6 +9,7 @@ class GildedRoseTest {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String CONJURED = "Conjured Mana Cake";
 
     //Test regular cases
     @Test
@@ -152,7 +153,7 @@ class GildedRoseTest {
     //Test conjured cases
     @Test
     void conjuredItemDegradation() {
-        Item[] items = new Item[]{new Item("Conjured Mana Cake", 10, 5)};
+        Item[] items = new Item[]{new Item(CONJURED, 10, 5)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
@@ -161,7 +162,7 @@ class GildedRoseTest {
 
     @Test
     void conjuredItemNeverBelowZero() {
-        Item[] items = new Item[]{new Item("Conjured Mana Cake", 10, 0)};
+        Item[] items = new Item[]{new Item(CONJURED, 10, 0)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
@@ -170,7 +171,7 @@ class GildedRoseTest {
 
     @Test
     void conjuredItemExpiredDegradation() {
-        Item[] items = new Item[]{new Item("Conjured Mana Cake", 0, 5)};
+        Item[] items = new Item[]{new Item(CONJURED, 0, 5)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(-1, app.items[0].sellIn);
@@ -179,7 +180,7 @@ class GildedRoseTest {
 
     @Test
     void conjuredItemExpiredNeverBelowZero() {
-        Item[] items = new Item[]{new Item("Conjured Mana Cake", 0, 1)};
+        Item[] items = new Item[]{new Item(CONJURED, 0, 1)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(-1, app.items[0].sellIn);
