@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class ItemHandler {
+public abstract class ItemHandler {
 
 
     private final Item item;
@@ -19,17 +19,13 @@ public class ItemHandler {
         }
     }
 
-    protected void handleItemExpiration(Item item) {
-        decrementItemQuality(item);
-    }
+    protected abstract void handleItemExpiration(Item item);
 
     protected void updateItemSellIn(Item item) {
         item.sellIn--;
     }
 
-    protected void updateItemQuality(Item item) {
-        decrementItemQuality(item);
-    }
+    protected abstract void updateItemQuality(Item item);
 
     protected final void decrementItemQuality(Item item) {
         if (item.quality > 0) {

@@ -15,6 +15,6 @@ public class ItemHandlerFactory {
         if (item.name.equals(BACKSTAGE_PASSES)) {
             return new ExpiringImprovingItemHandler(item);
         }
-        return new ItemHandler(item);
+        return new RegularItemHandler(item);
     }
 }
