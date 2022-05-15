@@ -2,7 +2,6 @@ package com.gildedrose;
 
 public class ItemHandler {
 
-    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
     private final Item item;
 
@@ -21,11 +20,7 @@ public class ItemHandler {
     }
 
     protected void handleItemExpiration(Item item) {
-        if (item.name.equals(BACKSTAGE_PASSES)) {
-            item.quality = 0;
-        } else {
-            decrementItemQuality(item);
-        }
+        decrementItemQuality(item);
     }
 
     protected void updateItemSellIn(Item item) {
@@ -33,19 +28,7 @@ public class ItemHandler {
     }
 
     protected void updateItemQuality(Item item) {
-        if (item.name.equals(BACKSTAGE_PASSES)) {
-            incrementItemQuality(item);
-
-            if (item.sellIn < 11) {
-                incrementItemQuality(item);
-            }
-
-            if (item.sellIn < 6) {
-                incrementItemQuality(item);
-            }
-        } else {
-            decrementItemQuality(item);
-        }
+        decrementItemQuality(item);
     }
 
     protected final void decrementItemQuality(Item item) {
